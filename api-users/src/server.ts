@@ -14,7 +14,7 @@ app.use(express.json());
 
 app.use(cookieParser());
 
-const PORT: number = process.env.PORT ? parseInt(process.env.PORT) : 3000;
+const PORT: number = process.env.PORT ? parseInt(process.env.PORT) : 3001;
 
 app.use('/users', userRouter);
 
