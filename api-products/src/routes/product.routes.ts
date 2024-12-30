@@ -3,11 +3,11 @@ import { createProduct, deleteProduct, getProduct, getProductsByCategory, update
 
 const router = Router();
 
-router.get('/all/:categoryId', (req: Request, res: Response) => {
+router.get('/all/:categoryId?', (req: Request, res: Response) => {
     getProductsByCategory(req, res);
 })
 
-router.get('/:id', (req: Request, res: Response) => {
+router.get('/one/:id', (req: Request, res: Response) => {
     getProduct(req, res);
 })
 
