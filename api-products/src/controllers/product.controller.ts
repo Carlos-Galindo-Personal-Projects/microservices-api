@@ -66,9 +66,23 @@ const createProduct = async (req: Request, res: Response) => {
 
         price = parseFloat(price);
         amount = parseInt(amount);
+        categoryId = parseInt(categoryId);
 
-        if (isNaN(price) || isNaN(amount)) {
-            return res.status(400).json({ message: "El precio y la cantidad deben ser números" });
+        if (isNaN(price) || isNaN(amount) || isNaN(categoryId)) {
+            return res.status(400).json({ message: "El precio, la cantidad y el id de la categoría deben ser números" });
+        }
+
+        const categoryExist = await prisma.category.findFirst({
+            select: {
+                id: true
+            },
+            where: {
+                id: categoryId
+            }
+        });
+
+        if (categoryExist === null) {
+            return res.status(404).json({ message: "La categoría no existe" });
         }
 
         await prisma.product.create({
@@ -77,7 +91,7 @@ const createProduct = async (req: Request, res: Response) => {
                 price: parseFloat(price),
                 description,
                 amount: parseInt(amount),
-                categoryId
+                categoryId: parseInt(categoryId)
             }
         });
 
