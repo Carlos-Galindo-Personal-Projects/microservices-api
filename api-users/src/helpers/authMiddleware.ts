@@ -19,8 +19,6 @@ const authMiddleware = async (req: Request, res: Response, next: NextFunction): 
 
         req.user = decoded;
 
-        console.log(req.user);
-
         next();
     } catch (error: any) {
         if (error.name === "JsonWebTokenError") {
@@ -31,6 +29,5 @@ const authMiddleware = async (req: Request, res: Response, next: NextFunction): 
         return;
     }
 };
-
 
 export default authMiddleware;
