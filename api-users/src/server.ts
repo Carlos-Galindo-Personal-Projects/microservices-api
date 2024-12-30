@@ -1,8 +1,9 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import userRouter from './routes/user.routes'
 import cookieParser from 'cookie-parser';
+
+import userRoutes from './routes/user.routes'
 
 const app = express();
 
@@ -16,7 +17,7 @@ app.use(cookieParser());
 
 const PORT: number = process.env.PORT ? parseInt(process.env.PORT) : 3001;
 
-app.use('/users', userRouter);
+app.use('/users', userRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
