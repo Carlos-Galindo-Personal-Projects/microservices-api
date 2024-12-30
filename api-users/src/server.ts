@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
@@ -15,9 +15,14 @@ app.use(express.json());
 
 app.use(cookieParser());
 
-const PORT: number = process.env.PORT ? parseInt(process.env.PORT) : 3001;
-
 app.use('/users', userRoutes);
+
+app.use((_req: Request, res: Response) => {
+  res.status(404).send({ message: "Ruta no encontrada" });
+  return;
+});
+
+const PORT: number = process.env.PORT ? parseInt(process.env.PORT) : 3001;
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);

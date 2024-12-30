@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
@@ -13,10 +13,15 @@ app.use(cors());
 
 app.use(express.json());
 
-const PORT: number = process.env.PORT ? parseInt(process.env.PORT) : 3002;
-
 app.use('/products', productRoutes)
 app.use('/categories', categoryRoutes)
+
+app.use((_req: Request, res: Response) => {
+    res.status(404).send({ message: "Ruta no encontrada" });
+    return;
+});
+
+const PORT: number = process.env.PORT ? parseInt(process.env.PORT) : 3002;
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
