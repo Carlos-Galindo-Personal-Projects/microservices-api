@@ -12,3 +12,5 @@ const services = [
         target: 'http://localhost:3002/categories',
     }
 ]
+
+export default services;
