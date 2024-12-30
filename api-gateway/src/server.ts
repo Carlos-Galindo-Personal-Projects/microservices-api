@@ -12,7 +12,6 @@ import { RequestCounterInterface } from "./types/types";
 
 const app = express();
 
-app.use(express.json());
 dotenv.config();
 app.use(cors());
 app.use(helmet());
