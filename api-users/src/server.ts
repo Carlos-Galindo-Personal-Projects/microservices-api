@@ -15,7 +15,6 @@ app.use(express.json());
 
 app.use(cookieParser());
 
-
 app.use('/users', userRoutes);
 
 app.use((_req: Request, res: Response) => {

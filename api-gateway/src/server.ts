@@ -4,17 +4,21 @@ import helmet from "helmet";
 import morgan from "morgan";
 import dotenv from "dotenv";
 import { createProxyMiddleware } from "http-proxy-middleware";
+import cookieParser from "cookie-parser";
 
+import authMiddleware from "./helpers/authMiddleware";
 import services from "./services/services";
 import { RequestCounterInterface } from "./types/types";
 
 const app = express();
 
+app.use(express.json());
 dotenv.config();
 app.use(cors());
 app.use(helmet());
 app.use(morgan("combined"));
 app.disable("x-powered-by");
+app.use(cookieParser());
 
 const rateLimit = 60;
 const interval = 60 * 1000;
@@ -61,6 +65,10 @@ services.forEach(({ route, target }) => {
         },
     }
 
+    if (route === "/products" || route === "/categories") {
+        app.use(route, authMiddleware, rateLimitAndTimeout, createProxyMiddleware(proxyOptions));
+        return
+    }
     app.use(route, rateLimitAndTimeout, createProxyMiddleware(proxyOptions));
 });
 
