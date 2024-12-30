@@ -7,14 +7,8 @@ const getProductsByCategory = async (req: Request, res: Response) => {
     try {
         const { categoryId } = req.params;
 
-        if (!categoryId) {
-            return res.status(400).json({ message: "El parametro categoryId es obligatorio" });
-        }
-
         const products = await prisma.product.findMany({
-            where: {
-                categoryId: parseInt(categoryId)
-            },
+            where: categoryId ? { categoryId: parseInt(categoryId) } :  undefined,
             select: {
                 id: true,
                 name: true,
@@ -40,9 +34,15 @@ const getProduct = async (req: Request, res: Response) => {
             return res.status(400).json({ message: "El parametro id es obligatorio" });
         }
 
+        const intId = parseInt(id);
+
+        if (isNaN(intId)) {
+            return res.status(400).json({ message: "El id debe ser un número" });
+        }
+
         const product = await prisma.product.findFirst({
             where: {
-                id: parseInt(id)
+                id: intId
             }
         });
 
