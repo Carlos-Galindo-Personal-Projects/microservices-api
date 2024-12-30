@@ -16,7 +16,7 @@ app.use(express.json());
 const PORT: number = process.env.PORT ? parseInt(process.env.PORT) : 3002;
 
 app.use('/products', productRoutes)
-app.use('/category', categoryRoutes)
+app.use('/categories', categoryRoutes)
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
