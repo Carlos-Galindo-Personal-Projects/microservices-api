@@ -43,6 +43,18 @@ const getProduct = async (req: Request, res: Response) => {
         const product = await prisma.product.findFirst({
             where: {
                 id: intId
+            },
+            select: {
+                id: true,
+                name: true,
+                price: true,
+                description: true,
+                amount: true,
+                category: {
+                    select: {
+                        name: true
+                    }
+                }
             }
         });
 
