@@ -10,6 +10,9 @@
   </a>
 </p>
 
+<h2>Arquitectura del sistema</h2>
+<img src="./architecture.svg" alt="Architecture Diagram" />
+
 <h2>Pasos para ejecutar el proyecto</h2>
 
 <h3>Clonar el repositorio</h3>
