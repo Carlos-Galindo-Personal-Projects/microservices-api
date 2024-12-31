@@ -13,7 +13,11 @@ import { RequestCounterInterface } from "./types/types";
 const app = express();
 
 dotenv.config();
-app.use(cors());
+//
+const allowedOrigins = [process.env.FRONTEND_URL];
+app.use(cors({
+    origin: allowedOrigins as (string | RegExp)[]
+}));
 app.use(helmet());
 app.use(morgan("combined"));
 app.disable("x-powered-by");
