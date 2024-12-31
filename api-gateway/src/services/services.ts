@@ -1,15 +1,15 @@
 const services = [
     {
         route: '/users',
-        target: process.env.API_USERS_ROUTE,
+        target: 'http://localhost:3001/user',
     },
     {
         route: '/products',
-        target: process.env.API_PRODUCTS_ROUTE,
+        target: 'http://localhost:3002/products',
     },
     {
         route: '/categories',
-        target: process.env.API_CATEGORIES_ROUTE,
+        target: 'http://localhost:3002/categories',
     }
 ]
 
