@@ -13,7 +13,7 @@ import { RequestCounterInterface } from "./types/types";
 const app = express();
 
 dotenv.config();
-//
+
 const allowedOrigins = [process.env.FRONTEND_URL];
 app.use(cors({
     origin: allowedOrigins as (string | RegExp)[]
