@@ -12,7 +12,14 @@ const getProductsByCategory = async (req: Request, res: Response) => {
             select: {
                 id: true,
                 name: true,
-                price: true
+                price: true,
+                description: true,
+                amount: true,
+                category: {
+                    select: {
+                        name: true
+                    }
+                }
             }
         });
 

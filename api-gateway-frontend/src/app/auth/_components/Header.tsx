@@ -14,7 +14,7 @@ export default async function Header() {
             <div className="flex items-center space-x-8">
                 <ProductIcon width={60} height={60} />
                 <h2 className="font-bold text-4xl">
-                    Hola
+                    Products Manager
                 </h2>
             </div>
             <div className="flex flex-col md:flex-row items-center">
