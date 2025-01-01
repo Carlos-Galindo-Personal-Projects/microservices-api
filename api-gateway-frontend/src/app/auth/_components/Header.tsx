@@ -1,6 +1,12 @@
+import { headers } from "next/headers";
 import ProductIcon from "./Icons/Product";
 
-export default function Header() {
+export default async function Header() {
+
+    const head = await headers();
+
+    const name = head.get('User-Name');
+
     return (
         <header
             className="bg-[#ffb300] dark:bg-[#940533] flex flex-col md:flex-row justify-between items-center px-10 py-6 shadow-lg"
@@ -11,31 +17,36 @@ export default function Header() {
                     Hola
                 </h2>
             </div>
-            <nav className="p-8 md:p-0">
-                <ul className="flex space-x-10 font-semibold text-xl">
-                    <li className="group">
-                        <a
-                            href="#"
-                        >
-                            Sí
-                        </a>
-                    </li>
-                    <li className="group">
-                        <a
-                            href="#"
-                        >
-                            No
-                        </a>
-                    </li>
-                    <li className="group">
-                        <a
-                            href="#"
-                        >
-                            ¿?
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+            <div className="flex flex-col md:flex-row items-center">
+                <p className="font-light text-xl mr-0 my-8 md:mr-16 text-center">
+                    Hello, <span className="font-extrabold">{name}</span>
+                </p>
+                <nav className="p-0">
+                    <ul className="flex space-x-10 font-semibold text-xl">
+                        <li className="group">
+                            <a
+                                href="#"
+                            >
+                                Sí
+                            </a>
+                        </li>
+                        <li className="group">
+                            <a
+                                href="#"
+                            >
+                                No
+                            </a>
+                        </li>
+                        <li className="group">
+                            <a
+                                href="#"
+                            >
+                                ¿?
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
         </header>
     )
 }
