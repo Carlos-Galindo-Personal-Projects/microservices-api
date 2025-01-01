@@ -121,4 +121,34 @@ export const products: ResponseProducts[] = [
             name: "Categoría 12"
         }
     },
+    {
+        id: 13,
+        name: "Producto 13",
+        price: 1300,
+        description: "Descripción del producto 13",
+        amount: 130,
+        category: {
+            name: "Categoría 13"
+        }
+    },
+    {
+        id: 14,
+        name: "Producto 14",
+        description: "Descripción del producto 14",
+        amount: 140,
+        price: 1400,
+        category: {
+            name: "Categoría 14"
+        }
+    },
+    {
+        id: 15,
+        name: "Producto 15",
+        description: "Descripción del producto 15",
+        amount: 150,
+        price: 1500,
+        category: {
+            name: "Categoría 15"
+        }
+    }
 ];
