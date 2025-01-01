@@ -25,6 +25,13 @@ export default function LoginPage() {
                 },
                 credentials: "include",
             });
+
+            if (!response.ok) {
+                const errorData: ResponseMessage = await response.json();
+                alert(errorData.message);
+                return;
+            }
+
             const message: ResponseMessage = await response.json();
             alert(message.message);
         } catch {
