@@ -22,7 +22,7 @@ const getProductsByCategory = async (req: Request, res: Response) => {
 
         return res.status(200).json(products);
     } catch (error) {
-        return res.status(500).json({ error: "Error interno del servidor" });
+        return res.status(500).json({ message: "Error interno del servidor" });
     }
 }
 
@@ -64,7 +64,7 @@ const getProduct = async (req: Request, res: Response) => {
 
         return res.status(200).json(product);
     } catch (error) {
-        return res.status(500).json({ error: "Error interno del servidor" });
+        return res.status(500).json({ message: "Error interno del servidor" });
     }
 }
 
@@ -165,7 +165,7 @@ const updateProduct = async (req: Request, res: Response) => {
 
         return res.status(200).json({ message: "Producto actualizado exitosamente" });
     } catch (error) {
-        return res.status(500).json({ error: "Error interno del servidor" });
+        return res.status(500).json({ message: "Error interno del servidor" });
     }
 }
 
@@ -195,7 +195,7 @@ const deleteProduct = async (req: Request, res: Response) => {
 
         return res.status(200).json({ message: "Producto eliminado exitosamente" });
     } catch (error) {
-        return res.status(500).json({ error: "Error interno del servidor" });
+        return res.status(500).json({ message: "Error interno del servidor" });
     }
 }
 
