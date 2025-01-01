@@ -9,11 +9,9 @@ const app = express();
 
 dotenv.config();
 
-const allowedOrigins = [process.env.API_GATEWAY_URL];
-
 app.use(cors({
-  origin: allowedOrigins as (string | RegExp)[],
-  credentials: true
+  origin: process.env.FRONTEND_URL,
+  credentials: true,
 }))
 
 app.use(express.json());
