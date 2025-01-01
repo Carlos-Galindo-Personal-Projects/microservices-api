@@ -5,7 +5,9 @@ export default function Layout({ children }: Readonly<{ children: React.ReactNod
     return (
         <>
             <Header />
-            <main>
+            <main
+                className="w-11/12 h-full container m-auto shadow-lg shadow-[#e8e8e8]"
+            >
                 {children}
             </main>
             <Footer />
