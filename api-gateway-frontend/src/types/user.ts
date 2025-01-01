@@ -5,4 +5,5 @@ export interface UserLogin {
 
 export interface UserRegister extends UserLogin {
     name: string;
+    repeatPassword: string
 }
