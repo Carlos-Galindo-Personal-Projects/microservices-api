@@ -4,15 +4,32 @@ import { FieldErrors, useForm } from "react-hook-form";
 import registerSchema from "@/schemas/register.schema";
 import { UserRegister } from "@/types/user";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { ResponseMessage } from "@/types/response";
+import { useRouter } from "next/navigation";
 
 export default function RegisterPage() {
+
+    const router = useRouter();
 
     const { register, handleSubmit } = useForm<UserRegister>({
         resolver: zodResolver(registerSchema),
     });
 
-    const onSuccess = () => {
-        alert('Oc')
+    const onSuccess = async (data: UserRegister) => {
+        try {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}users/register`, {
+                method: "POST",
+                body: JSON.stringify({ name: data.name, email: data.email, password: data.password }),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
+            const message: ResponseMessage = await response.json();
+            alert(message.message + '\n' + 'Por favor inicia sesión');
+            router.push('/no-auth/login');
+        } catch {
+            alert("Error al registrar usuario");
+        }
     }
 
     const onError = (errors: FieldErrors<UserRegister>) => {
