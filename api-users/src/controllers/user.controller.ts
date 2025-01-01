@@ -71,9 +71,9 @@ const login = async (req: Request, res: Response) => {
 
         res.cookie('auth-token', token, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: 'strict',
-            expires: new Date(Date.now() + 1000 * 60 * 60 * 12)
+            secure: true,
+            sameSite: 'none',
+            expires: new Date(Date.now() + 1000 * 60 * 60 * 12),
         })
 
         return res.status(200).json({ message: "Usuario logueado correctamente" });
