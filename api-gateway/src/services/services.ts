@@ -1,7 +1,7 @@
 const services = [
     {
         route: '/users',
-        target: 'http://localhost:3001/user',
+        target: 'http://localhost:3001/users',
     },
     {
         route: '/products',

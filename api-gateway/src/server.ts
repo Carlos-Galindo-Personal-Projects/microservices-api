@@ -14,9 +14,8 @@ const app = express();
 
 dotenv.config();
 
-const allowedOrigins = [process.env.FRONTEND_URL];
 app.use(cors({
-    origin: allowedOrigins as (string | RegExp)[]
+    origin: process.env.FRONTEND_URL
 }));
 app.use(helmet());
 app.use(morgan("combined"));
