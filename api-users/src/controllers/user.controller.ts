@@ -71,8 +71,8 @@ const login = async (req: Request, res: Response) => {
 
         res.cookie('auth-token', token, {
             httpOnly: true,
-            secure: true,
-            sameSite: 'strict',
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'none',
             expires: new Date(Date.now() + 1000 * 60 * 60 * 12)
         })
 
