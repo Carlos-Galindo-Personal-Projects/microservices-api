@@ -5,11 +5,11 @@ import loginSchema from "@/schemas/login.schema";
 import { UserLogin } from "@/types/user";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ResponseMessage } from "@/types/response";
-// import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
 
-    // const router = useRouter();
+    const router = useRouter();
 
     const { register, handleSubmit } = useForm<UserLogin>({
         resolver: zodResolver(loginSchema),
@@ -34,6 +34,7 @@ export default function LoginPage() {
 
             const message: ResponseMessage = await response.json();
             alert(message.message);
+            router.push("/auth");
         } catch {
             alert("Error al iniciar sesión");
         }
