@@ -12,7 +12,8 @@ dotenv.config();
 const allowedOrigins = [process.env.API_GATEWAY_URL];
 
 app.use(cors({
-  origin: allowedOrigins as (string | RegExp)[]
+  origin: allowedOrigins as (string | RegExp)[],
+  credentials: true,
 }))
 
 app.use(express.json());
