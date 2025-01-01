@@ -20,7 +20,8 @@ const getProductsByCategory = async (req: Request, res: Response) => {
                         name: true
                     }
                 }
-            }
+            },
+            take: 15
         });
 
         if (products.length === 0) {
