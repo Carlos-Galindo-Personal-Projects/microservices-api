@@ -33,7 +33,7 @@ export default function LoginPage() {
                             type="submit"
                             className="w-full dark:bg-[#ffb300] bg-[#c0012a] dark:hover:bg-[#e0a000] hover:bg-[#940533] dark:text-black font-medium rounded-lg px-4 py-2 transition duration-200 text-white"
                         >
-                            Login
+                            Sign In
                         </button>
                     </div>
                 </form>
@@ -41,4 +41,3 @@ export default function LoginPage() {
         </div>
     );
 }
-
