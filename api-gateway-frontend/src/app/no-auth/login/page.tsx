@@ -4,6 +4,7 @@ import { FieldErrors, useForm } from "react-hook-form";
 import loginSchema from "@/schemas/login.schema";
 import { UserLogin } from "@/types/user";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { ResponseMessage } from "@/types/response";
 // import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
@@ -14,8 +15,21 @@ export default function LoginPage() {
         resolver: zodResolver(loginSchema),
     });
 
-    const onSuccess = () => {
-        alert('Oc')
+    const onSuccess = async (data: UserLogin) => {
+        try {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}users/login`, {
+                method: "POST",
+                body: JSON.stringify({ email: data.email, password: data.password }),
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                credentials: "include",
+            });
+            const message: ResponseMessage = await response.json();
+            alert(message.message);
+        } catch {
+            alert("Error al iniciar sesión");
+        }
     }
 
     const onError = (errors: FieldErrors<UserLogin>) => {
