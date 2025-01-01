@@ -1,8 +1,32 @@
+"use client"
+
+import { FieldErrors, useForm } from "react-hook-form";
+import registerSchema from "@/schemas/register.schema";
+import { UserRegister } from "@/types/user";
+import { zodResolver } from "@hookform/resolvers/zod";
+
 export default function RegisterPage() {
+
+    const { register, handleSubmit } = useForm<UserRegister>({
+        resolver: zodResolver(registerSchema),
+    });
+
+    const onSuccess = () => {
+        alert('Oc')
+    }
+
+    const onError = (errors: FieldErrors<UserRegister>) => {
+        let stringErrors = '';
+        Object.entries(errors).forEach(([, value]) => {
+            stringErrors += value.message + '\n' || '';
+        });
+        alert(stringErrors);
+    };
+
     return (
         <div className="flex items-center justify-center p-4">
             <div className="bg-white dark:bg-[#333333] rounded-lg shadow-lg dark:shadow-[#ffb300] shadow-[#940533] p-6 w-full max-w-md">
-                <form>
+                <form onSubmit={handleSubmit(onSuccess, onError)}>
                     <div className="mb-6 text-center">
                         <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 dark:text-white">Register</h2>
                     </div>
@@ -14,6 +38,7 @@ export default function RegisterPage() {
                             id="name"
                             type="text"
                             placeholder="John Doe"
+                            {...register("name")}
                             className="mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-[#ffb300] focus:border-[#ffb300]"
                         />
                     </div>
@@ -25,6 +50,7 @@ export default function RegisterPage() {
                             id="email"
                             type="text"
                             placeholder="correo@correo.com"
+                            {...register("email")}
                             className="mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-[#ffb300] focus:border-[#ffb300]"
                         />
                     </div>
@@ -36,6 +62,19 @@ export default function RegisterPage() {
                             id="password"
                             type="password"
                             placeholder="********"
+                            {...register("password")}
+                            className="mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-[#ffb300] focus:border-[#ffb300]"
+                        />
+                    </div>
+                    <div className="mb-6">
+                        <label htmlFor="repeatPassword" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                            Repeat Password
+                        </label>
+                        <input
+                            id="repeatPassword"
+                            type="password"
+                            placeholder="********"
+                            {...register("repeatPassword")}
                             className="mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-[#ffb300] focus:border-[#ffb300]"
                         />
                     </div>
