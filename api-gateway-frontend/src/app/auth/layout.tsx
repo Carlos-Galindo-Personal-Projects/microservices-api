@@ -6,7 +6,7 @@ export default function Layout({ children }: Readonly<{ children: React.ReactNod
         <>
             <Header />
             <main
-                className="w-11/12 h-full container m-auto"
+                className="w-11/12 h-full container m-auto pb-12"
             >
                 {children}
             </main>
