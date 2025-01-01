@@ -1,8 +1,36 @@
+"use client"
+
+import { FieldErrors, useForm } from "react-hook-form";
+import loginSchema from "@/schemas/login.schema";
+import { UserLogin } from "@/types/user";
+import { zodResolver } from "@hookform/resolvers/zod";
+// import { useRouter } from "next/navigation";
+
 export default function LoginPage() {
+
+    // const router = useRouter();
+
+    const { register, handleSubmit } = useForm<UserLogin>({
+        resolver: zodResolver(loginSchema),
+    });
+
+    const onSuccess = () => {
+        alert('Oc')
+    }
+
+    const onError = (errors: FieldErrors<UserLogin>) => {
+        let stringErrors = '';
+        Object.entries(errors).forEach(([, value]) => {
+            stringErrors += value.message + '\n' || '';
+        });
+        alert(stringErrors);
+    };
+
+
     return (
         <div className="flex items-center justify-center p-4">
             <div className="bg-white dark:bg-[#333333] rounded-lg shadow-lg dark:shadow-[#ffb300] shadow-[#940533] p-6 w-full max-w-md">
-                <form>
+                <form onSubmit={handleSubmit(onSuccess, onError)}>
                     <div className="mb-6 text-center">
                         <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 dark:text-white">Login</h2>
                     </div>
@@ -13,6 +41,7 @@ export default function LoginPage() {
                         <input
                             id="email"
                             type="text"
+                            {...register("email")}
                             placeholder="correo@correo.com"
                             className="mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-[#ffb300] focus:border-[#ffb300]"
                         />
@@ -25,6 +54,7 @@ export default function LoginPage() {
                             id="password"
                             type="password"
                             placeholder="********"
+                            {...register("password")}
                             className="mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-[#ffb300] focus:border-[#ffb300]"
                         />
                     </div>
