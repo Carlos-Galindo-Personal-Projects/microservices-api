@@ -18,7 +18,7 @@ export default function Footer() {
                 </p>
                 <Link
                     href="https://github.com/Carlos-Galindo-Personal-Projects/microservices-api"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    className="dark:text-[#E5E5E5] text-[#00274D] hover:underline"
                 >
                     GitHub Repo
                 </Link>
@@ -27,17 +27,17 @@ export default function Footer() {
                 <h2 className="text-lg font-medium mb-2">About Me</h2>
                 <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
                     <li>
-                        <Link href="#" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="#" className="dark:text-[#E5E5E5] text-[#00274D] hover:underline">
                             Github Profile
                         </Link>
                     </li>
                     <li>
-                        <Link href="#" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="#" className="dark:text-[#E5E5E5] text-[#00274D] hover:underline">
                             LinkedIn Profile
                         </Link>
                     </li>
                     <li>
-                        <Link href="#" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="#" className="dark:text-[#E5E5E5] text-[#00274D] hover:underline">
                             Portfolio
                         </Link>
                     </li>
