@@ -69,7 +69,7 @@ const login = async (req: Request, res: Response) => {
 
         const token = generateJWT(user.id, user.name);
 
-        res.cookie('token', token, {
+        res.cookie('auth-token', token, {
             httpOnly: true,
             secure: true,
             sameSite: 'strict',
@@ -84,7 +84,7 @@ const login = async (req: Request, res: Response) => {
 
 const logout = async (req: Request, res: Response) => {
     try {
-        res.clearCookie('token');
+        res.clearCookie('auth-token');
         return res.status(200).json({ message: "Usuario deslogueado correctamente" });
     } catch (error) {
         return res.status(500).json({ message: "Error interno del servidor" });

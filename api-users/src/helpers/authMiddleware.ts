@@ -3,7 +3,7 @@ import jwt, { JwtPayload } from "jsonwebtoken";
 
 const authMiddleware = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
-        const cookie = req.cookies["token"];
+        const cookie = req.cookies["auth-token"];
         if (!cookie) {
             res.status(401).json({ message: "Token no proporcionado" });
             return;
