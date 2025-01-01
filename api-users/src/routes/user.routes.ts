@@ -4,7 +4,7 @@ import authMiddleware from "../helpers/authMiddleware";
 
 const router = Router();
 
-router.post('/register', authMiddleware, (req: Request, res: Response) => {
+router.post('/register', (req: Request, res: Response) => {
     register(req, res);
 });
 
