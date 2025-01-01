@@ -87,6 +87,7 @@ DATABASE_URL="postgresql://POSTGRES_USER:POSTGRES_PASSWORD@localhost:POSTGRES_PO
 <p>Agregar las siguientes variables al archivo <code>.env</code>:</p>
 <pre><code>
 JWT_SECRET="SUPER_SECRET_KEY"
+FRONTEND_URL="http://localhost:3003"
 </code></pre>
 
 <p>Ejecutar las migraciones:</p>
