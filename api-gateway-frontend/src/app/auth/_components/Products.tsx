@@ -1,6 +1,25 @@
-import { products } from "@/mocks/products"
+import { products } from "@/mocks/products";
 
-export default function Products() {
+export default async function Products() {
+
+    let msg;
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}products/all`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        credentials: "include"
+    })
+
+    console.log(response)
+
+
+    // if(!response.ok){
+    //     const message: ResponseMessage = await response.json()
+    //     msg = message.message
+    // }
+
+    // response = await response.json();
 
     return (
         <div className={`grid ${products && products.length > 0 ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6' : 'h-[300px] flex items-center justify-center'}`}>
@@ -24,7 +43,7 @@ export default function Products() {
                     ))
                 ) : (
                     <div className="text-center text-2xl font-bold">
-                        There are no products to show
+                        {msg}
                     </div>
                 )
             }
