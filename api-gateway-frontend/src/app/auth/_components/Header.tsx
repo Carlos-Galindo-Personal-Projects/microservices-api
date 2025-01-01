@@ -3,7 +3,7 @@ import ProductIcon from "./Icons/Product";
 export default function Header() {
     return (
         <header
-            className="bg-[#e8e8e8] dark:bg-[#333333] flex flex-col md:flex-row justify-between items-center px-10 py-6 shadow-lg"
+            className="bg-[#ffb300] dark:bg-[#940533] flex flex-col md:flex-row justify-between items-center px-10 py-6 shadow-lg"
         >
             <div className="flex items-center space-x-8">
                 <ProductIcon width={60} height={60} />
