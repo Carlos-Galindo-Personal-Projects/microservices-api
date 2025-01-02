@@ -7,7 +7,7 @@ export default async function Product({id}: {id: string}) {
     const authCookie = cookieStore.get("auth-token");
 
     let msg;
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}products/one/${id}`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}products/one/edit/${id}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
