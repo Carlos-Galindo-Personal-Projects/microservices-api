@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import Products from "./_components/Products";
+import ProductsSkeleton from "./_components/Skeleton/ProductsSkeleton";
 
 export default function Dashboard() {
     return (
@@ -9,7 +10,7 @@ export default function Dashboard() {
             >
                 Manage your products
             </h2>
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<ProductsSkeleton />}>
                 <Products />
             </Suspense>
         </>

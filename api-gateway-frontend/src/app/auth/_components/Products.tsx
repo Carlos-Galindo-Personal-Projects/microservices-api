@@ -1,4 +1,4 @@
-import { products } from "@/mocks/products";
+import { ResponseMessage, ResponseProducts } from "@/types/response";
 
 export default async function Products() {
 
@@ -11,15 +11,12 @@ export default async function Products() {
         credentials: "include"
     })
 
-    console.log(response)
+    if (!response.ok) {
+        const message: ResponseMessage = await response.json()
+        msg = message.message
+    }
 
-
-    // if(!response.ok){
-    //     const message: ResponseMessage = await response.json()
-    //     msg = message.message
-    // }
-
-    // response = await response.json();
+    const products: ResponseProducts[] = await response.json();
 
     return (
         <div className={`grid ${products && products.length > 0 ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6' : 'h-[300px] flex items-center justify-center'}`}>
@@ -27,7 +24,7 @@ export default async function Products() {
                 products && products.length > 0 ? (
                     products.map((product, key) => (
                         <div key={key}
-                        className={`bg-[#333333] dark:bg-[#e8e8e8] p-6 rounded-lg shadow-md flex flex-col space-y-4 ${key === products.length - 1 ? 'col-span-3 md:col-span-2 lg:col-span-1' : ''}`}
+                            className={`bg-[#333333] dark:bg-[#e8e8e8] p-6 rounded-lg shadow-md flex flex-col space-y-4 ${key === products.length - 1 ? 'col-span-3 md:col-span-2 lg:col-span-1' : ''}`}
                         >
                             <h2 className="text-2xl font-bold dark:text-[#333333] text-[#e8e8e8]">{product.name}</h2>
                             <p className="dark:text-[#333333] text-[#e8e8e8] text-sm">{product.category.name}</p>
@@ -37,7 +34,7 @@ export default async function Products() {
                                 <span className="text-sm dark:text-[#333333] text-[#e8e8e8]">Stock: {product.amount}</span>
                             </div>
                             <button className="mt-4 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300">
-                                Add to Cart
+                                Show details
                             </button>
                         </div>
                     ))
