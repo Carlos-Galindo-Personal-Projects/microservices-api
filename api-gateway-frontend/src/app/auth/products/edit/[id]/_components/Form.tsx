@@ -1,12 +1,12 @@
 "use client"
 
 import { productSchema } from "@/schemas/product.schema";
-import { ResponseEditProduct, ResponseMessage } from "@/types/response";
+import { ResponseCategories, ResponseEditProduct, ResponseMessage } from "@/types/response";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { FieldErrors, useForm } from "react-hook-form";
 
-export default function EditProduct({ product }: { product: ResponseEditProduct }) {
+export default function EditProduct({ product, categories }: { product: ResponseEditProduct; categories: ResponseCategories[] }) {
 
     const router = useRouter();
 
@@ -139,9 +139,15 @@ export default function EditProduct({ product }: { product: ResponseEditProduct 
                             <option value="" disabled>
                                 Select a category
                             </option>
-                            <option value="1">Category 1</option>
-                            <option value="2">Category 2</option>
-                            <option value="3">Category 3</option>
+                            {
+                                categories && categories.length > 0 ? (
+                                    categories.map((category, key) => (
+                                        <option value={category.id} key={key}>{category.name}</option>
+                                    ))
+                                ) : (
+                                    <option value="" disabled>No hay categorias</option>
+                                )
+                            }
                         </select>
                     </div>
                     <div className="text-center">

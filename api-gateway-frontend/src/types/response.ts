@@ -21,3 +21,8 @@ export interface ResponseEditProduct {
     amount: number;
     categoryId: number;
 }
+
+export interface ResponseCategories {
+    id: number;
+    name: string;
+}
