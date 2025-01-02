@@ -19,6 +19,7 @@ export default async function Products() {
     if (!response.ok) {
         const message: ResponseMessage = await response.json()
         msg = message.message
+        return;
     }
 
     const products: ResponseProducts[] = await response.json();
