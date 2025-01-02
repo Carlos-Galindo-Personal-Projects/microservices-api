@@ -19,7 +19,6 @@ export default async function Product({ id }: { id: string }) {
     if (!response.ok) {
         const message: ResponseMessage = await response.json()
         msg = message.message
-        console.log(msg)
         return (
             <div className="flex flex-col my-36">
             <div className="flex-grow container m-auto">
