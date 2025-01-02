@@ -30,7 +30,7 @@ export default async function Products() {
             <h2
                 className="text-3xl text-center my-32 font-semibold"
             >
-                There are no products to show
+                There are no products for showing
             </h2>
         );
     }
