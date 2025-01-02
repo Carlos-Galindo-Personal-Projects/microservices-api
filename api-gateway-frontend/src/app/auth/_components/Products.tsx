@@ -1,12 +1,17 @@
 import { ResponseMessage, ResponseProducts } from "@/types/response";
+import { cookies } from "next/headers";
 
 export default async function Products() {
+
+    const cookieStore = await cookies();
+    const authCookie = cookieStore.get("auth-token");
 
     let msg;
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}products/all`, {
         method: "GET",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Cookie": `auth-token=${authCookie?.value}`
         },
         credentials: "include"
     })
