@@ -8,6 +8,7 @@ export default async function Products() {
     const authCookie = cookieStore.get("auth-token");
 
     let msg;
+    let products: ResponseProducts[] = [];
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}products/all`, {
         method: "GET",
         headers: {
@@ -22,10 +23,22 @@ export default async function Products() {
         return;
     }
 
-    const products: ResponseProducts[] = await response.json();
+    try {
+         products = await response.json();
+    } catch {
+        return (
+            <h2
+                className="text-3xl text-center my-32 font-semibold"
+            >
+                No hay productos para mostrar
+            </h2>
+        );
+    }
+
+
 
     return (
-        <div className={`grid ${products && products.length > 0 ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6' : 'h-[300px] flex items-center justify-center'}`}>
+        <div className={`grid ${products && products.length > 0 ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6' : 'h-[300px] flex items-center justify-center'} my-8`}>
             {
                 products && products.length > 0 ? (
                     products.map((product, key) => (
