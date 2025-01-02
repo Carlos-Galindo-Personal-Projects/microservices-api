@@ -1,4 +1,4 @@
-import { ResponseMessage, ResponseProducts } from "@/types/response";
+import { ResponseMessage, ResponseEditProduct } from "@/types/response";
 import { cookies } from "next/headers";
 import EditProduct from "./Form";
 
@@ -29,7 +29,7 @@ export default async function Product({id}: {id: string}) {
         )
     }
 
-    const product: ResponseProducts = await response.json();
+    const product: ResponseEditProduct = await response.json();
 
     return (
         <EditProduct product={product} />

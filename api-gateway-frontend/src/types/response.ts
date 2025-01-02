@@ -12,3 +12,14 @@ export interface ResponseProducts {
         name: string;
     };
 }
+
+export interface ResponseEditProduct {
+    id: number;
+    name: string;
+    price: number;
+    description: string;
+    amount: number;
+    category: {
+        id: number;
+    };
+}

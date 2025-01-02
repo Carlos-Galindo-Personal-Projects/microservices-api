@@ -1,23 +1,24 @@
 "use client"
 
 import { productSchema } from "@/schemas/product.schema";
-import { RequestProducts } from "@/types/request";
-import { ResponseProducts } from "@/types/response";
+import { ResponseEditProduct } from "@/types/response";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FieldErrors, useForm } from "react-hook-form";
 
-export default function EditProduct({ product }: { product: ResponseProducts }) {
+export default function EditProduct({ product }: { product: ResponseEditProduct }) {
 
-    const { register, handleSubmit } = useForm<RequestProducts>({
+    console.log(product);
+
+    const { register, handleSubmit } = useForm<ResponseEditProduct>({
         resolver: zodResolver(productSchema)
     });
 
-    const onSuccess = async (data: RequestProducts) => {
+    const onSuccess = async (data: ResponseEditProduct) => {
         console.log(data);
         alert("oc")
     }
 
-        const onError = (errors: FieldErrors<RequestProducts>) => {
+        const onError = (errors: FieldErrors<ResponseEditProduct>) => {
             console.log(errors);
             let stringErrors = '';
             Object.entries(errors).forEach(([, value]) => {
@@ -95,7 +96,7 @@ export default function EditProduct({ product }: { product: ResponseProducts }) 
                         <select
                             id="category"
                             defaultValue={1}
-                            {...register("categoryId", {setValueAs: (value: string) => Number(value), required: true})}
+                            {...register("category.id", {setValueAs: (value: string) => Number(value), required: true})}
                             className="mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-[#ffb300] focus:border-[#ffb300]"
                         >
                             <option value="" disabled>Select a category</option>
