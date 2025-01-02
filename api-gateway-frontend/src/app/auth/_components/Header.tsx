@@ -18,7 +18,7 @@ export default async function Header() {
                 </h2>
             </div>
             <div className="flex flex-col md:flex-row items-center">
-                <p className="font-light text-xl mr-0 my-8 md:mr-16 text-center">
+                <p className="text-xl mr-0 my-8 md:mr-16 text-center">
                     Hello, <span className="font-extrabold">{name}</span>
                 </p>
                 <nav className="p-0">
