@@ -12,8 +12,7 @@ export default async function Products() {
         headers: {
             "Content-Type": "application/json",
             "Cookie": `auth-token=${authCookie?.value}`
-        },
-        credentials: "include"
+        }
     })
 
     if (!response.ok) {
