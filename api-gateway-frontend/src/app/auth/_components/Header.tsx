@@ -13,7 +13,7 @@ export default async function Header() {
             className="bg-[#ffb300] dark:bg-[#940533] flex flex-col md:flex-row justify-between items-center px-10 py-6 shadow-lg"
         >
             <div className="flex items-center space-x-8">
-                <Link href="/auth" className="hidden md:block">
+                <Link href="/auth" className="hidden md:block" aria-label="Products Manager Dashboard">
                     <ProductIcon width={50} height={50} />
                 </Link>
                 <div className="flex flex-col items-center justify-center">
