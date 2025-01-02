@@ -1,6 +1,7 @@
 import { ResponseMessage, ResponseProducts } from "@/types/response";
 import { cookies } from "next/headers";
 import Link from "next/link";
+import DeleteProduct from "./DeleteProduct";
 
 export default async function Product({ id }: { id: string }) {
 
@@ -53,9 +54,10 @@ export default async function Product({ id }: { id: string }) {
                 <div
                     className="bg-blue-600 text-white text-center py-2 px-6 mt-6 rounded-lg hover:bg-blue-700 transition duration-300"
                 >
-                    Editar
+                    Edit
                 </div>
             </Link>
+            <DeleteProduct id={product.id} />
         </article>
     );
 }
