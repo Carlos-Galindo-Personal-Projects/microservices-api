@@ -1,5 +1,6 @@
 import { headers } from "next/headers";
 import ProductIcon from "./Icons/Product";
+import Link from "next/link";
 
 export default async function Header() {
 
@@ -12,36 +13,47 @@ export default async function Header() {
             className="bg-[#ffb300] dark:bg-[#940533] flex flex-col md:flex-row justify-between items-center px-10 py-6 shadow-lg"
         >
             <div className="flex items-center space-x-8">
-                <ProductIcon width={60} height={60} />
-                <h2 className="font-bold text-4xl">
-                    Products Manager
-                </h2>
+                <Link href="/auth" className="hidden md:block">
+                    <ProductIcon width={50} height={50} />
+                </Link>
+                <div className="flex flex-col items-center justify-center">
+                    <h2 className="font-bold text-4xl">
+                        Products Manager
+                    </h2>
+                    <p className="text-xl mt-4 mb-4 md:mb-0 text-center">
+                        Hello, <span className="font-bold">{name}</span>
+                    </p>
+                </div>
             </div>
             <div className="flex flex-col md:flex-row items-center">
-                <p className="text-xl mr-0 my-8 md:mr-16 text-center">
-                    Hello, <span className="font-bold">{name}</span>
-                </p>
                 <nav className="p-0">
                     <ul className="flex space-x-10 text-xl">
                         <li className="group">
                             <a
                                 href="#"
                             >
-                                Sí
+                                Add Product
                             </a>
                         </li>
                         <li className="group">
                             <a
                                 href="#"
                             >
-                                No
+                                Filter Products
                             </a>
                         </li>
                         <li className="group">
                             <a
                                 href="#"
                             >
-                                ¿?
+                                About
+                            </a>
+                        </li>
+                        <li className="group">
+                            <a
+                                href="#"
+                            >
+                                Logout
                             </a>
                         </li>
                     </ul>
