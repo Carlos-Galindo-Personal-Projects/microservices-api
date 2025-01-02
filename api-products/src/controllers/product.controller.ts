@@ -100,11 +100,7 @@ const getProductWithCategory = async (req: Request, res: Response) => {
                 price: true,
                 description: true,
                 amount: true,
-                category: {
-                    select: {
-                        id: true
-                    }
-                }
+                categoryId: true
             }
         });
 
@@ -181,7 +177,20 @@ const updateProduct = async (req: Request, res: Response) => {
             return res.status(404).json({ message: "Producto no encontrado" });
         }
 
-        let { price, amount } = req.body;
+        let { price, amount, name, description, categoryId } = req.body;
+
+        const categoryExist = await prisma.category.findFirst({
+            select: {
+                id: true
+            },
+            where: {
+                id: categoryId
+            }
+        });
+
+        if (categoryId && categoryExist === null) {
+            return res.status(404).json({ message: "La categoría no existe" });
+        }
 
         if (!price && !amount) {
             return res.status(400).json({ message: "Debe enviar al menos un campo a actualizar" });
@@ -209,7 +218,10 @@ const updateProduct = async (req: Request, res: Response) => {
             },
             data: {
                 price: price ? price : product.price,
-                amount: amount ? amount : product.amount
+                amount: amount ? amount : product.amount,
+                name: name ? name : product.name,
+                description: description ? description : product.description,
+                categoryId: categoryId
             }
         });
 
