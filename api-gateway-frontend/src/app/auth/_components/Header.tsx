@@ -22,7 +22,7 @@ export default async function Header() {
                     Hello, <span className="font-bold">{name}</span>
                 </p>
                 <nav className="p-0">
-                    <ul className="flex space-x-10 font-semibold text-xl">
+                    <ul className="flex space-x-10 text-xl">
                         <li className="group">
                             <a
                                 href="#"
