@@ -1,31 +1,62 @@
 "use client"
 
 import { productSchema } from "@/schemas/product.schema";
-import { ResponseEditProduct } from "@/types/response";
+import { ResponseEditProduct, ResponseMessage } from "@/types/response";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import { FieldErrors, useForm } from "react-hook-form";
 
 export default function EditProduct({ product }: { product: ResponseEditProduct }) {
 
-    console.log(product);
+    const router = useRouter();
 
     const { register, handleSubmit } = useForm<ResponseEditProduct>({
         resolver: zodResolver(productSchema)
     });
 
     const onSuccess = async (data: ResponseEditProduct) => {
-        console.log(data);
-        alert("oc")
+        try {
+
+            const { name, description, amount, price, categoryId } = data;
+
+            const updatedProduct = {
+                name,
+                description,
+                amount,
+                price,
+                categoryId: categoryId
+            }
+
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}products/${product.id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(updatedProduct),
+                credentials: "include"
+            });
+
+            if (!response.ok) {
+                const message: ResponseMessage = await response.json();
+                alert(message.message);
+                return
+            }
+
+            const message: ResponseMessage = await response.json();
+            alert(message.message);
+            router.push("/auth");
+        } catch {
+            alert("Ha ocurrido un error");
+        }
     }
 
-        const onError = (errors: FieldErrors<ResponseEditProduct>) => {
-            console.log(errors);
-            let stringErrors = '';
-            Object.entries(errors).forEach(([, value]) => {
-                stringErrors += value.message + '\n' || '';
-            });
-            alert(stringErrors);
-        };
+    const onError = (errors: FieldErrors<ResponseEditProduct>) => {
+        let stringErrors = '';
+        Object.entries(errors).forEach(([, value]) => {
+            stringErrors += value.message + '\n' || '';
+        });
+        alert(stringErrors);
+    };
 
     return (
         <div className="flex items-center justify-center p-4 mt-8">
@@ -71,7 +102,7 @@ export default function EditProduct({ product }: { product: ResponseEditProduct 
                             defaultValue={product.price}
                             min={1}
                             step={0.5}
-                            {...register("price", {setValueAs: (value: string) => Number(value)})}
+                            {...register("price", { setValueAs: (value: string) => Number(value) })}
                             className="mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-[#ffb300] focus:border-[#ffb300]"
                         />
                     </div>
@@ -85,27 +116,34 @@ export default function EditProduct({ product }: { product: ResponseEditProduct 
                             placeholder="Amount"
                             defaultValue={product.amount}
                             min={1}
-                            {...register("amount", {setValueAs: (value: string) => Number(value)})}
+                            {...register("amount", { setValueAs: (value: string) => Number(value) })}
                             className="mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-[#ffb300] focus:border-[#ffb300]"
                         />
                     </div>
                     <div className="mb-6">
-                        <label htmlFor="categoryId" className="block text-sm font-medium text-[#e8e8e8] dark:text-[#333333]">
+                        <label
+                            htmlFor="categoryId"
+                            className="block text-sm font-medium text-[#e8e8e8] dark:text-[#333333]"
+                        >
                             Category
                         </label>
                         <select
                             id="categoryId"
-                            defaultValue={product.category.id}
-                            {...register("category.id", {setValueAs: (value: string) => Number(value), required: true})}
+                            defaultValue={product.categoryId}
+                            {...register("categoryId", {
+                                setValueAs: (value: string) => Number(value),
+                                required: "Please select a category",
+                            })}
                             className="mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-[#ffb300] focus:border-[#ffb300]"
                         >
-                            <option value="" disabled>Select a category</option>
+                            <option value="" disabled>
+                                Select a category
+                            </option>
                             <option value="1">Category 1</option>
                             <option value="2">Category 2</option>
                             <option value="3">Category 3</option>
                         </select>
                     </div>
-
                     <div className="text-center">
                         <button
                             type="submit"

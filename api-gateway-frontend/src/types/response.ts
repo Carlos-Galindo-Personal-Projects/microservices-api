@@ -19,7 +19,5 @@ export interface ResponseEditProduct {
     price: number;
     description: string;
     amount: number;
-    category: {
-        id: number;
-    };
+    categoryId: number;
 }
