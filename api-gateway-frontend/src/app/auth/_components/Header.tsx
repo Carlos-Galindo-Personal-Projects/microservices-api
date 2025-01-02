@@ -17,7 +17,7 @@ export default async function Header() {
                     <ProductIcon width={50} height={50} />
                 </Link>
                 <div className="flex flex-col items-center justify-center">
-                    <h2 className="font-bold text-4xl">
+                    <h2 className="font-bold text-4xl text-center">
                         Products Manager
                     </h2>
                     <p className="text-xl mt-4 mb-4 md:mb-0 text-center">
