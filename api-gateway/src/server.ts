@@ -6,7 +6,7 @@ import dotenv from "dotenv";
 import { createProxyMiddleware } from "http-proxy-middleware";
 import cookieParser from "cookie-parser";
 
-import authMiddleware from "./helpers/authMiddleware";
+// import authMiddleware from "./helpers/authMiddleware";
 import services from "./services/services";
 import { RequestCounterInterface } from "./types/types";
 
@@ -68,10 +68,10 @@ services.forEach(({ route, target }) => {
         },
     }
 
-    if (route === "/products" || route === "/categories") {
-        app.use(route, authMiddleware, rateLimitAndTimeout, createProxyMiddleware(proxyOptions));
-        return
-    }
+    // if (route === "/products" || route === "/categories") {
+    //     app.use(route, authMiddleware, rateLimitAndTimeout, createProxyMiddleware(proxyOptions));
+    //     return
+    // }
     app.use(route, rateLimitAndTimeout, createProxyMiddleware(proxyOptions));
 });
 
