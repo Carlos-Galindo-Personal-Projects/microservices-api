@@ -1,5 +1,6 @@
 import { ResponseMessage, ResponseProducts } from "@/types/response";
 import { cookies } from "next/headers";
+import Link from "next/link";
 
 export default async function Products() {
 
@@ -37,9 +38,12 @@ export default async function Products() {
                                 <span className="text-lg font-semibold dark:text-[#333333] text-[#e8e8e8]">${product.price}</span>
                                 <span className="text-sm dark:text-[#333333] text-[#e8e8e8]">Stock: {product.amount}</span>
                             </div>
-                            <button className="mt-4 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300">
+                            <Link
+                                className="mt-4 bg-blue-600 text-white text-center py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300"
+                                href={`auth/products/${product.id}`}
+                            >
                                 Show details
-                            </button>
+                            </Link>
                         </div>
                     ))
                 ) : (
