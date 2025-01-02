@@ -76,6 +76,48 @@ const getProduct = async (req: Request, res: Response) => {
     }
 }
 
+const getProductWithCategory = async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params;
+
+        if (!id) {
+            return res.status(400).json({ message: "El parametro id es obligatorio" });
+        }
+
+        const intId = parseInt(id);
+
+        if (isNaN(intId)) {
+            return res.status(400).json({ message: "El id debe ser un número" });
+        }
+
+        const product = await prisma.product.findFirst({
+            where: {
+                id: intId
+            },
+            select: {
+                id: true,
+                name: true,
+                price: true,
+                description: true,
+                amount: true,
+                category: {
+                    select: {
+                        id: true
+                    }
+                }
+            }
+        });
+
+        if (!product) {
+            return res.status(404).json({ message: "Producto no encontrado" });
+        }
+
+        return res.status(200).json(product);
+    } catch (error) {
+        return res.status(500).json({ message: "Error interno del servidor" });
+    }
+}
+
 const createProduct = async (req: Request, res: Response) => {
     try {
         let { name, price, description, amount, categoryId } = req.body;
@@ -210,6 +252,7 @@ const deleteProduct = async (req: Request, res: Response) => {
 export {
     getProductsByCategory,
     getProduct,
+    getProductWithCategory,
     createProduct,
     updateProduct,
     deleteProduct

@@ -1,5 +1,5 @@
 import { Request, Response, Router } from "express";
-import { createProduct, deleteProduct, getProduct, getProductsByCategory, updateProduct } from "../controllers/product.controller";
+import { createProduct, deleteProduct, getProduct, getProductsByCategory, updateProduct, getProductWithCategory } from "../controllers/product.controller";
 
 const router = Router();
 
@@ -9,6 +9,10 @@ router.get('/all/:categoryId?', (req: Request, res: Response) => {
 
 router.get('/one/:id', (req: Request, res: Response) => {
     getProduct(req, res);
+})
+
+router.get('/one/edit/:id', (req: Request, res: Response) => {
+    getProductWithCategory(req, res);
 })
 
 router.post('/', (req: Request, res: Response) => {
