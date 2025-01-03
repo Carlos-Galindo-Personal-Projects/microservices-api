@@ -38,12 +38,12 @@ export default async function Products() {
 
 
     return (
-        <div className={`grid ${products && products.length > 0 ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6' : 'h-[300px] flex items-center justify-center'} my-8`}>
+        <div className={`grid ${products && products.length > 0 ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6' : 'h-[300px] flex items-center justify-center'} my-8`}>
             {
                 products && products.length > 0 ? (
                     products.map((product, key) => (
                         <div key={key}
-                            className={`bg-[#333333] dark:bg-[#e8e8e8] p-6 rounded-lg shadow-md flex flex-col space-y-4 ${key === products.length - 1 ? 'col-span-3 md:col-span-2 lg:col-span-1' : ''}`}
+                            className={`bg-[#333333] dark:bg-[#e8e8e8] p-6 rounded-lg shadow-md flex flex-col space-y-4`}
                         >
                             <h2 className="text-2xl font-bold dark:text-[#333333] text-[#e8e8e8]">{product.name}</h2>
                             <p className="dark:text-[#333333] text-[#e8e8e8] text-sm">{product.category.name}</p>
