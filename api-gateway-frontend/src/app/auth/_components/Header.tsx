@@ -1,12 +1,19 @@
 import { headers } from "next/headers";
 import ProductIcon from "./Icons/Product";
 import Link from "next/link";
+import LogoutButton from "./LogoutButton";
 
 export default async function Header() {
 
     const head = await headers();
 
     const name = head.get('User-Name');
+
+    const routes = [
+        { route: "/auth/products/add", name: "Add Product" },
+        { route: "#", name: "Filter Products" },
+        { route: "#", name: "About" }
+    ]
 
     return (
         <header
@@ -28,37 +35,29 @@ export default async function Header() {
             <div className="flex flex-col md:flex-row items-center">
                 <nav className="p-0">
                     <ul className="flex space-x-10 text-xl">
-                        <li className="group text-center">
-                            <Link
-                                href="/auth/products/add"
-                            >
-                                Add Product
-                            </Link>
-                        </li>
-                        <li className="group text-center">
-                            <a
-                                href="#"
-                            >
-                                Filter Products
-                            </a>
-                        </li>
-                        <li className="group text-center">
-                            <a
-                                href="#"
-                            >
-                                About
-                            </a>
-                        </li>
-                        <li className="group text-center">
-                            <a
-                                href="#"
-                            >
-                                Logout
-                            </a>
+                        {
+                            routes.map((route, index) => (
+                                <CustomLink key={index} href={route.route} name={route.name} />
+                            ))
+                        }
+                        <li>
+                            <LogoutButton />
                         </li>
                     </ul>
                 </nav>
             </div>
         </header>
+    )
+}
+
+function CustomLink({ href, name }: { href: string, name: string }) {
+    return (
+        <li className="group text-center">
+            <Link
+                href={href}
+            >
+            {name}
+            </Link>
+        </li>
     )
 }
