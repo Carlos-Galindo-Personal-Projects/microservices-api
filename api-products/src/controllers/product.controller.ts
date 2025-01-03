@@ -2,6 +2,8 @@ import { PrismaClient } from "@prisma/client";
 import { Request, Response } from "express";
 
 const prisma = new PrismaClient();
+const skip = 6;
+const take = 6;
 
 const getProductsByCategory = async (req: Request, res: Response) => {
     try {
@@ -109,6 +111,57 @@ const getProductWithCategory = async (req: Request, res: Response) => {
         }
 
         return res.status(200).json(product);
+    } catch (error) {
+        return res.status(500).json({ message: "Error interno del servidor" });
+    }
+}
+
+const filterProducts = async (req: Request, res: Response) => {
+    try {
+        const { categoryId, page } = req.params;
+
+        try {
+            page ? parseInt(page) : 1;
+        } catch (error) {
+            return res.status(400).json({ message: "La página debe ser un número" });
+        }
+
+        const categoryExist = await prisma.category.findFirst({
+            where: {
+                id: categoryId ? parseInt(categoryId) : undefined
+            }
+        });
+
+        if (categoryId && categoryExist === null) {
+            return res.status(404).json({ message: "La categoría no existe" });
+        }
+
+        const products = await prisma.product.findMany({
+            where: {
+                categoryId: categoryId ? parseInt(categoryId) : undefined
+            },
+            select: {
+                id: true,
+                name: true,
+                price: true,
+                description: true,
+                amount: true,
+                category: {
+                    select: {
+                        name: true
+                    }
+                }
+            },
+            skip: skip * (parseInt(page) - 1),
+            take: take
+        });
+
+        if (products.length === 0) {
+            return res.status(204).json({ message: "No hay productos" });
+        }
+
+        return res.status(200).json(products);
+
     } catch (error) {
         return res.status(500).json({ message: "Error interno del servidor" });
     }
@@ -265,6 +318,7 @@ export {
     getProductsByCategory,
     getProduct,
     getProductWithCategory,
+    filterProducts,
     createProduct,
     updateProduct,
     deleteProduct
