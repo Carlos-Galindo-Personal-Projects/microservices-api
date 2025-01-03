@@ -33,7 +33,7 @@
 <pre><code>
 PORT=3001
 JWT_SECRET="SUPER_SECRET_KEY"
-API_GATEWAY_URL="http://localhost:3000"
+FRONTEND_URL="https://localhost:3003"
 DATABASE_URL="postgresql://POSTGRES_USER:POSTGRES_PASSWORD@localhost:POSTGRES_PORT/POSTGRES_USERS_DATABASE_NAME?schema=public"
 </code></pre>
 
@@ -60,7 +60,7 @@ DATABASE_URL="postgresql://POSTGRES_USER:POSTGRES_PASSWORD@localhost:POSTGRES_PO
 <p>Agregar las siguientes variables al archivo <code>.env</code>:</p>
 <pre><code>
 PORT=3002
-API_GATEWAY_URL="http://localhost:3000"
+FRONTEND_URL = "https://localhost:3003"
 DATABASE_URL="postgresql://POSTGRES_USER:POSTGRES_PASSWORD@localhost:POSTGRES_PORT/POSTGRES_PRODUCTS_DATABASE_NAME?schema=public"
 </code></pre>
 
@@ -87,7 +87,7 @@ DATABASE_URL="postgresql://POSTGRES_USER:POSTGRES_PASSWORD@localhost:POSTGRES_PO
 <p>Agregar las siguientes variables al archivo <code>.env</code>:</p>
 <pre><code>
 JWT_SECRET="SUPER_SECRET_KEY"
-FRONTEND_URL="http://localhost:3003"
+FRONTEND_URL="https://localhost:3003"
 </code></pre>
 
 <p>Ejecutar las migraciones:</p>
