@@ -22,7 +22,8 @@ export default function LogoutButton() {
                 alert(msg.message)
             }
 
-            alert("Sesión cerrada con éxito")
+            const msg: ResponseMessage = await response.json();
+            alert(msg.message)
             router.push("/no-auth/login")
         } catch {
             alert("Ha ocurrido un error al intentar cerrar sesión")
