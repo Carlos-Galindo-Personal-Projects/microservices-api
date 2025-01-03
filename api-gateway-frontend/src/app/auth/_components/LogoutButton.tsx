@@ -11,10 +11,7 @@ export default function LogoutButton() {
         try {
             const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}users/logout`, {
                 method: "POST",
-                credentials: "include",
-                headers: {
-                    "Content-Type": "application/json"
-                }
+                credentials: "include"
             });
 
             if(!response.ok) {
