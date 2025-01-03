@@ -28,28 +28,28 @@ export default async function Header() {
             <div className="flex flex-col md:flex-row items-center">
                 <nav className="p-0">
                     <ul className="flex space-x-10 text-xl">
-                        <li className="group">
-                            <a
-                                href="#"
+                        <li className="group text-center">
+                            <Link
+                                href="/auth/products/add"
                             >
                                 Add Product
-                            </a>
+                            </Link>
                         </li>
-                        <li className="group">
+                        <li className="group text-center">
                             <a
                                 href="#"
                             >
                                 Filter Products
                             </a>
                         </li>
-                        <li className="group">
+                        <li className="group text-center">
                             <a
                                 href="#"
                             >
                                 About
                             </a>
                         </li>
-                        <li className="group">
+                        <li className="group text-center">
                             <a
                                 href="#"
                             >
