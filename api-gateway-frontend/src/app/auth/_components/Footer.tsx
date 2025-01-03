@@ -27,17 +27,17 @@ export default function Footer() {
                 <h2 className="text-lg font-medium mb-2">About Me</h2>
                 <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
                     <li>
-                        <Link href="#" className="dark:text-[#E5E5E5] text-[#00274D] hover:underline">
+                        <Link href="https://github.com/CarlosGal19" className="dark:text-[#E5E5E5] text-[#00274D] hover:underline">
                             Github Profile
                         </Link>
                     </li>
                     <li>
-                        <Link href="#" className="dark:text-[#E5E5E5] text-[#00274D] hover:underline">
+                        <Link href="https://www.linkedin.com/in/carlosgalindoislas/" className="dark:text-[#E5E5E5] text-[#00274D] hover:underline">
                             LinkedIn Profile
                         </Link>
                     </li>
                     <li>
-                        <Link href="#" className="dark:text-[#E5E5E5] text-[#00274D] hover:underline">
+                        <Link href="https://github.com/Carlos-Galindo-Personal-Projects" className="dark:text-[#E5E5E5] text-[#00274D] hover:underline">
                             Portfolio
                         </Link>
                     </li>
