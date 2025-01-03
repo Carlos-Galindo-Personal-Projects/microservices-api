@@ -3,6 +3,7 @@
 import { useState } from "react";
 import CategorySelector from "./Filter/CategorySelector";
 import { FilteredProductsProps } from "@/types/components";
+import PageChange from "./Filter/PageChange";
 
 export default function FilteredProducts({categories, page, categoryId}: FilteredProductsProps) {
 
@@ -11,7 +12,8 @@ export default function FilteredProducts({categories, page, categoryId}: Filtere
 
     return (
         <>
-            <CategorySelector categories={categories} currentCategoryId={currentCategoryId} setCurrentCategoryId={setCurrentCategoryId} />
+            <PageChange currentCategoryId={currentCategoryId} setCurrentPage={setCurrentPage} currentPage={currentPage} />
+            <CategorySelector categories={categories} currentCategoryId={currentCategoryId} setCurrentCategoryId={setCurrentCategoryId} currentPage={currentPage} />
         </>
     )
 }

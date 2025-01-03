@@ -11,4 +11,11 @@ export interface CategorySelectorProps {
     categories: ResponseCategories[];
     currentCategoryId: number;
     setCurrentCategoryId: Dispatch<SetStateAction<number>>;
+    currentPage: number;
+}
+
+export interface PageChangeProps {
+    currentCategoryId: number;
+    setCurrentPage: Dispatch<SetStateAction<number>>;
+    currentPage: number;
 }

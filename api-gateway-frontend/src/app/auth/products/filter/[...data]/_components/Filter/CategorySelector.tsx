@@ -1,6 +1,15 @@
 import { CategorySelectorProps } from "@/types/components";
+import { useRouter } from "next/navigation";
 
-export default function CategorySelector({ categories, currentCategoryId, setCurrentCategoryId }: CategorySelectorProps) {
+export default function CategorySelector({ categories, currentCategoryId, setCurrentCategoryId, currentPage }: CategorySelectorProps) {
+
+    const router = useRouter();
+
+    const handleChange = (value: string) => {
+        setCurrentCategoryId(parseInt(value));
+        router.push(`/auth/products/filter/${currentPage}/${value}`);
+    }
+
     return (
         <div className="mb-6">
             <label
@@ -14,7 +23,7 @@ export default function CategorySelector({ categories, currentCategoryId, setCur
                 name="categoryId"
                 id="categoryId"
                 value={currentCategoryId}
-                onChange={(e) => setCurrentCategoryId(Number(e.target.value))}
+                onChange={(e) => handleChange(e.target.value)}
             >
                 <option value="" disabled>
                     Select a category
