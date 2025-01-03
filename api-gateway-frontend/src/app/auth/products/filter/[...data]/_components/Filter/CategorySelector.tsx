@@ -10,7 +10,7 @@ export default function CategorySelector({ categories, currentCategoryId, setCur
                 Category
             </label>
             <select
-                className="mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-[#ffb300] focus:border-[#ffb300]"
+                className="mt-1 block w-full border border-[#ffb300] dark:border-[#940533] rounded-lg px-3 py-2 bg-gray-50 dark:bg-gray-800 dark:focus:ring-[#940533] dark:focus:border-[#940533] focus:ring-[#ffb300] focus:border-[#ffb300] sm:text-sm"
                 name="categoryId"
                 id="categoryId"
                 value={currentCategoryId}
