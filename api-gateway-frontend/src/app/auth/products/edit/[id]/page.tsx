@@ -1,12 +1,12 @@
 import { Suspense } from "react";
 import Product from "./_components/Product";
-import FormEditSkeleton from "./_components/Skeleton/FormEditSkeleton";
+import FormSkeleton from "../../_components/FormSkeleton";
 
 export default async function Page({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
 
     return (
-        <Suspense fallback={<FormEditSkeleton />}>
+        <Suspense fallback={<FormSkeleton />}>
             <Product id={id} />
         </Suspense>
     );

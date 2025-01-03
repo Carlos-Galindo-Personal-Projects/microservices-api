@@ -1,4 +1,4 @@
-export default function FormEditSkeleton() {
+export default function FormSkeleton() {
     return (
         <div className="flex items-center justify-center p-4 mt-8 animate-pulse">
             <div className="bg-gray-700 dark:bg-gray-200 rounded-lg shadow-lg p-6 w-full max-w-md">
