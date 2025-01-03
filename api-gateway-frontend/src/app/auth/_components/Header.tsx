@@ -12,7 +12,7 @@ export default async function Header() {
     const routes = [
         { route: "/auth/products/add", name: "Add Product" },
         { route: "#", name: "Filter Products" },
-        { route: "#", name: "About" }
+        { route: "/auth/about", name: "About" }
     ]
 
     return (
