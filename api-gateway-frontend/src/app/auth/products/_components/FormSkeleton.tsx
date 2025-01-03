@@ -4,7 +4,7 @@ export default function FormSkeleton() {
             <div className="bg-gray-700 dark:bg-gray-200 rounded-lg shadow-lg p-6 w-full max-w-md">
                 <form>
                     <div className="mb-6 text-center">
-                        <div className="h-6 bg-gray-200 dark:bg-gray-700 w-1/2"></div>
+                        <div className="h-6 bg-gray-200 dark:bg-gray-700 w-1/2 container mx-auto"></div>
                     </div>
                     <div className="mb-4">
                         <div className="h-4 bg-gray-200 dark:bg-gray-700 w-1/4"></div>
