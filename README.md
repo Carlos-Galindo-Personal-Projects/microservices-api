@@ -99,4 +99,51 @@ FRONTEND_URL="https://localhost:3003"
 <p>Iniciar el proyecto:</p>
 <pre><code>npm start</code></pre>
 
-<h3> Ahora puedes hacer peticiones a http://localhost:3000 y esta redirige las peticiones a http://localhost:3001 y http://localhost:3002  </h3>
+<h3>Navegar a api-products, instalar las dependencias, crear un archivo .env, ejecutar las migraciones, transpilar el proyecto y ejecutarlo</h3>
+
+<p>Ir al directorio <code>api-products/</code>:</p>
+<pre><code>cd ../api-products/</code></pre>
+
+<p>Instalar las dependencias:</p>
+<pre><code>npm i</code></pre>
+
+<p>Crear un archivo <code>.env</code>:</p>
+<pre><code>touch .env</code></pre>
+
+<p>Agregar las siguientes variables al archivo <code>.env</code>:</p>
+<pre><code>
+PORT=3002
+FRONTEND_URL = "https://localhost:3003"
+DATABASE_URL="postgresql://POSTGRES_USER:POSTGRES_PASSWORD@localhost:POSTGRES_PORT/POSTGRES_PRODUCTS_DATABASE_NAME?schema=public"
+</code></pre>
+
+<p>Ejecutar las migraciones:</p>
+<pre><code>npx prisma migrate dev --name add-default</code></pre>
+
+<p>Transpilar el proyecto:</p>
+<pre><code>npm run build</code></pre>
+
+<p>Iniciar el proyecto:</p>
+<pre><code>npm start</code></pre>
+
+<h3>Navegar a api-gateway-frontend, instalar las dependencias, crear un archivo .env y ejecutarlo</h3>
+
+<p>Ir al directorio <code>api-gateway-frontend/</code>:</p>
+<pre><code>cd ../api-gateway-frontend/</code></pre>
+
+<p>Instalar las dependencias:</p>
+<pre><code>npm i</code></pre>
+
+<p>Crear un archivo <code>.env</code>:</p>
+<pre><code>touch .env</code></pre>
+
+<p>Agregar las siguientes variables al archivo <code>.env</code>:</p>
+<pre><code>
+NEXT_PUBLIC_API_URL=http://localhost:3000/
+JWT_SECRET=SUPER_SECRET_KEY
+</code></pre>
+
+<p>Iniciar el proyecto:</p>
+<pre><code>next dev --experimental-https</code></pre>
+
+<h3> Ahora puedes hacer usar el frontend en https://localhost:3003 y desde el mismo realizar peticiones a http://localhost:3000 y esta redirige las peticiones a http://localhost:3001 y http://localhost:3002  </h3>
