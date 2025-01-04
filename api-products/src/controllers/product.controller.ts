@@ -10,7 +10,7 @@ const getProductsByCategory = async (req: Request, res: Response) => {
         const { categoryId } = req.params;
 
         const products = await prisma.product.findMany({
-            where: categoryId ? { categoryId: parseInt(categoryId) } :  undefined,
+            where: categoryId ? { categoryId: parseInt(categoryId) } : undefined,
             select: {
                 id: true,
                 name: true,
@@ -160,7 +160,7 @@ const filterProducts = async (req: Request, res: Response) => {
             return res.status(204).json({ message: "No hay productos" });
         }
 
-        return res.status(200).json(products);
+        return res.status(200).json({ products });
 
     } catch (error) {
         return res.status(500).json({ message: "Error interno del servidor" });
