@@ -18,4 +18,5 @@ export interface PageChangeProps {
     currentCategoryId: number;
     setCurrentPage: Dispatch<SetStateAction<number>>;
     currentPage: number;
+    next: boolean;
 }

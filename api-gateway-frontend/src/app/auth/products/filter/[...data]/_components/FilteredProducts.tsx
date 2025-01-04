@@ -13,6 +13,7 @@ export default function FilteredProducts({categories, page, categoryId}: Filtere
     const [currentCategoryId, setCurrentCategoryId] = useState<number>(categoryId);
     const [products, setProducts] = useState<ResponseProducts[]>([]);
     const [message, setMessage] = useState<string>('');
+    const [next, setNext] = useState<boolean>(false);
 
 
     useEffect(() => {
@@ -36,8 +37,10 @@ export default function FilteredProducts({categories, page, categoryId}: Filtere
             try {
                 const filteredProducts: ResponseFilteredProducts = await response.json();
                 const products: ResponseProducts[] = filteredProducts.products;
+                const areMoreProducts: boolean = filteredProducts.areMoreProducts;
 
                 setProducts(products);
+                setNext(areMoreProducts);
             } catch {
                 setMessage("There are no products for showing");
             }
@@ -49,7 +52,7 @@ export default function FilteredProducts({categories, page, categoryId}: Filtere
 
     return (
         <>
-            <PageChange currentCategoryId={currentCategoryId} setCurrentPage={setCurrentPage} currentPage={currentPage} />
+            <PageChange next={next} currentCategoryId={currentCategoryId} setCurrentPage={setCurrentPage} currentPage={currentPage} />
             <CategorySelector categories={categories} currentCategoryId={currentCategoryId} setCurrentCategoryId={setCurrentCategoryId} currentPage={currentPage} />
             <ProductCards products={products} msg={message} />
         </>

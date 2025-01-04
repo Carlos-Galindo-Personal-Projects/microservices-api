@@ -29,4 +29,5 @@ export interface ResponseCategories {
 
 export interface ResponseFilteredProducts {
     products: ResponseProducts[];
+    areMoreProducts: boolean;
 }
