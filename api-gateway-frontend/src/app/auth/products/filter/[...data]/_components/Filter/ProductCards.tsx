@@ -26,7 +26,7 @@ export default function ProductCards({ products, msg }: { products: ResponseProd
                         </div>
                     ))
                 ) : (
-                    <div className="text-center text-2xl font-bold">
+                    <div className="text-center text-5xl font-bold">
                         {msg}
                     </div>
                 )
