@@ -26,14 +26,14 @@ export default function PageChange({ currentCategoryId, setCurrentPage, currentP
         <div className="flex justify-center space-x-4 my-6">
             <button
                 disabled={currentPage === 1}
-                className="bg-[#ffb300] dark:bg-[#940533] px-2 rounded-md disabled:opacity-50"
+                className="bg-[#ffb300] dark:bg-[#940533] px-2 rounded-md disabled:opacity-50 font-bold"
                 onClick={() => handleDecrease()}
             >
                 {"<"}
             </button>
             <button
                 disabled={!next}
-                className="bg-[#ffb300] dark:bg-[#940533] px-2 rounded-md disabled:opacity-50"
+                className="bg-[#ffb300] dark:bg-[#940533] px-2 rounded-md disabled:opacity-50 font-bold"
                 onClick={() => handleIncrease()}
             >
                 {">"}
