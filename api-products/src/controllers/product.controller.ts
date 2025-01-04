@@ -118,27 +118,30 @@ const getProductWithCategory = async (req: Request, res: Response) => {
 
 const filterProducts = async (req: Request, res: Response) => {
     try {
-        const { categoryId, page } = req.params;
+        const page: number = parseInt(req.params.page);
+        const categoryId: number = parseInt(req.params.categoryId);
 
         try {
-            page ? parseInt(page) : 1;
+            page ? page : 1;
         } catch (error) {
             return res.status(400).json({ message: "La página debe ser un número" });
         }
 
-        const categoryExist = await prisma.category.findFirst({
-            where: {
-                id: categoryId ? parseInt(categoryId) : undefined
-            }
-        });
+        if (categoryId && categoryId > 0) {
+            const categoryExist = await prisma.category.findFirst({
+                where: {
+                    id: categoryId
+                }
+            });
 
-        if (categoryId && categoryExist === null) {
-            return res.status(404).json({ message: "La categoría no existe" });
+            if (categoryId && categoryExist === null) {
+                return res.status(404).json({ message: "La categoría no existe" });
+            }
         }
 
         const products = await prisma.product.findMany({
             where: {
-                categoryId: categoryId ? parseInt(categoryId) : undefined
+                categoryId: categoryId ? categoryId : undefined
             },
             select: {
                 id: true,
@@ -152,7 +155,7 @@ const filterProducts = async (req: Request, res: Response) => {
                     }
                 }
             },
-            skip: skip * (parseInt(page) - 1),
+            skip: skip * ((page) - 1),
             take: take
         });
 
