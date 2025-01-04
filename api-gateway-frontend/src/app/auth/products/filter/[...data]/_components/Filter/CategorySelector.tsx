@@ -25,8 +25,8 @@ export default function CategorySelector({ categories, currentCategoryId, setCur
                 value={currentCategoryId}
                 onChange={(e) => handleChange(e.target.value)}
             >
-                <option value="" disabled>
-                    Select a category
+                <option value={0}>
+                    All
                 </option>
                 {
                     categories && categories.length > 0 ? (

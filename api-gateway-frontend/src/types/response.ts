@@ -26,3 +26,7 @@ export interface ResponseCategories {
     id: number;
     name: string;
 }
+
+export interface ResponseFilteredProducts {
+    products: ResponseProducts[];
+}
