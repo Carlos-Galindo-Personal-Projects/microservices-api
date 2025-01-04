@@ -6,6 +6,7 @@ import { FilteredProductsProps } from "@/types/components";
 import PageChange from "./Filter/PageChange";
 import { ResponseFilteredProducts, ResponseMessage, ResponseProducts } from "@/types/response";
 import ProductCards from "./Filter/ProductCards";
+import FilteredProductsSkeleton from "./Skeleton/FilteredProductsSkeleton";
 
 export default function FilteredProducts({categories, page, categoryId}: FilteredProductsProps) {
 
@@ -14,12 +15,13 @@ export default function FilteredProducts({categories, page, categoryId}: Filtere
     const [products, setProducts] = useState<ResponseProducts[]>([]);
     const [message, setMessage] = useState<string>('');
     const [next, setNext] = useState<boolean>(false);
-
+    const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
 
         const filterProducts = async () => {
 
+            setLoading(true);
             const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}products/filter/${currentPage}/${currentCategoryId}`, {
                 method: "GET",
                 headers: {
@@ -31,6 +33,7 @@ export default function FilteredProducts({categories, page, categoryId}: Filtere
             if (!response.ok) {
                 const message: ResponseMessage = await response.json();
                 setMessage(message.message);
+                setLoading(false);
                 return;
             }
 
@@ -43,12 +46,20 @@ export default function FilteredProducts({categories, page, categoryId}: Filtere
                 setNext(areMoreProducts);
             } catch {
                 setMessage("There are no products for showing");
+            } finally {
+                setLoading(false);
             }
 
         }
 
         filterProducts();
     }, [currentPage, currentCategoryId]);
+
+    if (loading) {
+        return (
+            <FilteredProductsSkeleton />
+        )
+    }
 
     return (
         <>
