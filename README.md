@@ -37,12 +37,6 @@ FRONTEND_URL="https://localhost:3003"
 DATABASE_URL="postgresql://POSTGRES_USER:POSTGRES_PASSWORD@localhost:POSTGRES_PORT/POSTGRES_USERS_DATABASE_NAME?schema=public"
 </code></pre>
 
-<p>Ejecutar las migraciones:</p>
-<pre><code>npx prisma migrate dev --name add-default</code></pre>
-
-<p>Transpilar el proyecto:</p>
-<pre><code>npm run build</code></pre>
-
 <p>Iniciar el proyecto:</p>
 <pre><code>npm start</code></pre>
   
@@ -64,12 +58,6 @@ FRONTEND_URL = "https://localhost:3003"
 DATABASE_URL="postgresql://POSTGRES_USER:POSTGRES_PASSWORD@localhost:POSTGRES_PORT/POSTGRES_PRODUCTS_DATABASE_NAME?schema=public"
 </code></pre>
 
-<p>Transpilar el proyecto:</p>
-<pre><code>npm run build</code></pre>
-
-<p>Ejecutar las migraciones:</p>
-<pre><code>npm run migrate</code></pre>
-
 <p>Iniciar el proyecto:</p>
 <pre><code>npm start</code></pre>
 
@@ -89,12 +77,6 @@ DATABASE_URL="postgresql://POSTGRES_USER:POSTGRES_PASSWORD@localhost:POSTGRES_PO
 JWT_SECRET="SUPER_SECRET_KEY"
 FRONTEND_URL="https://localhost:3003"
 </code></pre>
-
-<p>Ejecutar las migraciones:</p>
-<pre><code>npx prisma migrate dev --name add-default</code></pre>
-
-<p>Transpilar el proyecto:</p>
-<pre><code>npm run build</code></pre>
 
 <p>Iniciar el proyecto:</p>
 <pre><code>npm start</code></pre>
